@@ -4,20 +4,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t pilje/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t vvlfwpv2/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true pilje/react-test npm test
+  - docker run -e CI=true vvlfwpv2/react-test npm test
 
 after_success:
-  - docker build -t pilje/multi-client ./client
-  - docker build -t pilje/multi-nginx ./nginx
-  - docker build -t pilje/multi-server ./server
-  - docker build -t pilje/multi-worker ./worker
+  - docker build -t vvlfwpv2/multi-client ./client
+  - docker build -t vvlfwpv2/multi-nginx ./nginx
+  - docker build -t vvlfwpv2/multi-server ./server
+  - docker build -t vvlfwpv2/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push pilje/multi-client
-  - docker push pilje/multi-nginx
-  - docker push pilje/multi-server
-  - docker push pilje/multi-worker
+  - docker push vvlfwpv2/multi-client
+  - docker push vvlfwpv2/multi-nginx
+  - docker push vvlfwpv2/multi-server
+  - docker push vvlfwpv2/multi-worker
